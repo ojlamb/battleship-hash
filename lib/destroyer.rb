@@ -1,18 +1,18 @@
 class Destroyer
 
-  DEFAULT_SIZE = 2
-  DEFAULT_DIRECTION = :horizontal
+  DEFAULT_SIZE = 3
+
 
   attr_reader :size
-  attr_accessor :direction
+
 
   def initialize
     @size = DEFAULT_SIZE
-    @direction = DEFAULT_DIRECTION
+
   end
 
-  def change_direction
-    @direction == :horizontal ? self.direction = :vertical : self.direction = :horizontal
-  end
+  # def change_direction
+  #   @direction == :horizontal ? self.direction = :vertical : self.direction = :horizontal
+  # end
 
 end
