@@ -9,14 +9,16 @@ class Player
   end
 
   def fire(position)
-    if @board.ships.values.flatten.include?(position)
+    if @board.ships.keys.include?(position)
       board.collect_hits(position)
+      board.checks(position)
       "Hit"
     else
       board.collect_misses(position)
       "Miss"
     end
   end
+
 
 
   # private

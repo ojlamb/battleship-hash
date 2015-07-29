@@ -55,6 +55,13 @@ class Board
 		@misses << position
 	end
 
+	def checks(position)
+		if ships.keys.include?(position)
+			ships[position].hits += 1
+			ships[position].sunk?
+		end
+	end
+
 	# def sunk?
 	# 	if (@ships[self.class.name] & hits).length == DEFAULT_SIZE
 	# 		true
