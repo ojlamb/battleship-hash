@@ -5,7 +5,8 @@ class PatrolBoat
 	DEFAULT_SIZE = 2
 	DEFAULT_DIRECTION = :horizontal
 
-	attr_reader :size, :direction
+	attr_reader :size
+	attr_accessor :direction
 
 	def initialize
 		@size = DEFAULT_SIZE
