@@ -4,7 +4,7 @@ class Board
 
 	attr_reader :ships
 
-	def intiialize
+	def initialize
 		@ships = {}
 	end
 
@@ -27,7 +27,7 @@ class Board
 			@ships.merge!(ship.class.name => location)
 		else
 			@ships.values.each do |coords|
-				if (coords & location).empty?
+				if (coords & location) == []
 					@ships.merge!(ship.class.name => location)
 				else
 					fail "Ships cannot overlap"

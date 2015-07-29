@@ -8,8 +8,9 @@ describe Board do
 			expect(subject).to respond_to(:place_ship).with(3).arguments
 		end
 
-		it "should begin with a ships" do
+		it "should place a ship with cooridinates and direction" do
 			
+
 		end
 	end
 
