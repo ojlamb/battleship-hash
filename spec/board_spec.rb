@@ -45,6 +45,8 @@ describe Board do
     end
   end
 
+  context "hits and misses" do
+  end
 
 
 

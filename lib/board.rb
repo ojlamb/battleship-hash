@@ -46,4 +46,6 @@ class Board
 			@ships
 		end
 	end
+
+
 end
