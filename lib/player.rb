@@ -10,10 +10,22 @@ class Player
 
   def fire(position)
     if @board.ships.values.flatten.include?(position)
-
-      "You have hit a ship"
+      board.collect_hits(position)
+      "Hit"
     else
-      "You have missed"
+      board.collect_misses(position)
+      "Miss"
     end
   end
+
+
+  # private
+  # def gets_hit?
+  #   @board.ships.values.flatten.include?(position)
+  # end
+
+  # def missed
+  #   @board.ships.values.flatten.include?(position)
+  # end
+
 end

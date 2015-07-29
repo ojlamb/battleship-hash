@@ -6,11 +6,13 @@ class Board
 
 	DEFAULT_GRID_SIZE = 10
 
-	attr_reader :ships, :grid_size
+	attr_reader :ships, :grid_size, :hits, :misses
 
 	def initialize(grid_size=DEFAULT_GRID_SIZE)
 		@ships = {}
 		@grid_size = grid_size
+		@hits = []
+		@misses = []
 	end
 
 	def place_ship(ship, direction, coordinates)
@@ -46,6 +48,22 @@ class Board
 			@ships
 		end
 	end
+
+	def collect_hits(position)
+		@hits << position
+	end
+
+	def collect_misses(position)
+		@misses << position
+	end
+
+	# def sunk?(ship)
+	# 	if (ships[ship] & hits) == ships[ship]
+	# 		true
+	# 	else
+	# 		false
+	# 	end
+	# end
 
 
 end

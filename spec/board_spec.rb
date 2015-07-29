@@ -46,12 +46,32 @@ describe Board do
   end
 
   context "hits and misses" do
+    it "hits array includes last fire position if a hit" do
+      subject.collect_hits("A2")
+      expect(subject.hits).to include("A2")
+    end
+
+    it "misses array includes last fire position if a miss" do
+      subject.collect_misses("A2")
+      expect(subject.misses).to include("A2")
+    end
   end
 
+  # context "sinks a ship" do
+  #   it "responds to sinks ship" do
+  #     expect(subject).to respond_to(:sunk?).with(1).argument
+  #   end
 
+  #   it "sinks returns true if ship has sunk" do
+  #     player = double :player
+  #     allow(player).to receive(:fire) { "A2" }
+  #     ships = {"Ship" => ["A2"]}
+  #     hits = ["A2", "A3"]
+  #     expect(subject.sunk?("Ship")).to eq true
+  #   end
 
-
-
-
+  # end
 
 end
+
+
