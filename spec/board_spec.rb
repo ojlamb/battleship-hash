@@ -13,7 +13,7 @@ describe Board do
 			coordinates = "A2"
       allow(ship).to receive(:size) { 2 }
       subject.place_ship(ship, :vertical, coordinates)
-      expect(subject.ships.values).to include(["A2", "B2"])
+      expect(subject.ships.keys).to include("A2")
 		end
 
     it "should only have vertical or horizontal direction" do

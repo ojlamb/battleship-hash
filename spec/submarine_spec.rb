@@ -7,5 +7,4 @@ describe Submarine do
 	  expect(subject.size).to eq(Submarine::DEFAULT_SIZE)
 	end
 
-
 end

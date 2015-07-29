@@ -1,5 +1,5 @@
-require_relative "patrol_boat"
 require_relative "numeric"
+
 require 'pry'
 
 class Board
@@ -36,14 +36,12 @@ class Board
 		end
 
 		if @ships == {}
-			@ships.merge!(ship.class.name => location)
+			location.each { |co| @ships[co] = ship }
 		else
-			@ships.values.each do |coords|
-				if (coords & location) == []
-					@ships.merge!(ship.class.name => location)
-				else
-					fail "Ships cannot overlap"
-				end
+			if (@ships.keys & location).empty?
+				location.each { |co| @ships[co] = ship }
+			else
+				fail "Ships cannot overlap"
 			end
 			@ships
 		end
@@ -57,8 +55,8 @@ class Board
 		@misses << position
 	end
 
-	# def sunk?(ship)
-	# 	if (ships[ship] & hits) == ships[ship]
+	# def sunk?
+	# 	if (@ships[self.class.name] & hits).length == DEFAULT_SIZE
 	# 		true
 	# 	else
 	# 		false
