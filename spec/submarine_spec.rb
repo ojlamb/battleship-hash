@@ -30,6 +30,4 @@ describe Submarine do
 
 	end
 
-
-
 end
