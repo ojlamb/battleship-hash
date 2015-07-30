@@ -6,7 +6,7 @@ describe Board do
   let(:unhit_ship) { double(:unhit_ship, :size => 2, :hits => 0 ) }
   let(:player) { double(:player, :fire => "") }
 
-	context "placing the ship on the board" do
+	describe "#place_ship" do
 		it "responds to place with 3 arguments" do
 			expect(subject).to respond_to(:place_ship).with(3).arguments
 		end
@@ -57,19 +57,9 @@ describe Board do
       subject.collect_misses("A2")
       expect(subject.misses).to include("A2")
     end
-
-    xit 'can get all coordinates for horizontal' do
-      expect(subject.get_all_coordinates(3, "A1", :horizontal)).to eq ['A1','A2','A3']
-    end
-
-    xit 'can get all coordinates for vertical' do
-      expect(subject.get_all_coordinates(3, "A1", :vertical)).to eq ['A1','B1','C1']
-    end
-
   end
 
-
-  context "#all_ships_sunk?" do
+  describe "#all_ships_sunk?" do
     it "can tell if all ships has sunk - true" do
       subject.place_ship(unhit_ship, :vertical, "A2")
       subject.collect_hits("A2")
@@ -77,12 +67,6 @@ describe Board do
       expect(subject.all_ships_sunk?).to eq true
     end
   end
-
-    # it "can tell if all ships has sunk - false" do
-    #   expect(subject)
-    # end
-  # end
-
 end
 
 
