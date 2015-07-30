@@ -62,6 +62,10 @@ class Board
 		end
 	end
 
+	def all_ships_sunk?
+		@ships.keys.length == @hits.length
+	end
+
 	# def sunk?
 	# 	if (@ships[self.class.name] & hits).length == DEFAULT_SIZE
 	# 		true

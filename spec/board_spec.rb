@@ -3,6 +3,8 @@ require 'board'
 
 describe Board do
   let(:ship) { double :ship }
+  let(:unhit_ship) { double(:unhit_ship, :size => 2, :hits => 0 ) }
+  let(:player) { double(:player, :fire => "") }
 
 	context "placing the ship on the board" do
 		it "responds to place with 3 arguments" do
@@ -66,19 +68,19 @@ describe Board do
 
   end
 
-  # context "sinks a ship" do
-  #   it "responds to sinks ship" do
-  #     expect(subject).to respond_to(:sunk?).with(1).argument
-  #   end
 
-  #   it "sinks returns true if ship has sunk" do
-  #     player = double :player
-  #     allow(player).to receive(:fire) { "A2" }
-  #     ships = {"Ship" => ["A2"]}
-  #     hits = ["A2", "A3"]
-  #     expect(subject.sunk?("Ship")).to eq true
-  #   end
+  context "#all_ships_sunk?" do
+    it "can tell if all ships has sunk - true" do
+      subject.place_ship(unhit_ship, :vertical, "A2")
+      subject.collect_hits("A2")
+      subject.collect_hits("B2")
+      expect(subject.all_ships_sunk?).to eq true
+    end
+  end
 
+    # it "can tell if all ships has sunk - false" do
+    #   expect(subject)
+    # end
   # end
 
 end

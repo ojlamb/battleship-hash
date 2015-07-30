@@ -1,7 +1,7 @@
 require 'player'
 
 describe Player do
-  let (:board) { double :board }
+  let (:board) { double :board, :collect_hits => "A2" }
   let (:player) { Player.new board }
 
   context "player fires" do
