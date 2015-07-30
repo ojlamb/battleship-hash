@@ -55,6 +55,15 @@ describe Board do
       subject.collect_misses("A2")
       expect(subject.misses).to include("A2")
     end
+
+    xit 'can get all coordinates for horizontal' do
+      expect(subject.get_all_coordinates(3, "A1", :horizontal)).to eq ['A1','A2','A3']
+    end
+
+    xit 'can get all coordinates for vertical' do
+      expect(subject.get_all_coordinates(3, "A1", :vertical)).to eq ['A1','B1','C1']
+    end
+
   end
 
   # context "sinks a ship" do

@@ -55,9 +55,10 @@ class Board
 		@misses << position
 	end
 
-	def checks(position)
+	def checks(position) # untested
 		if ships.keys.include?(position)
-			ships[position].got_hits
+			#ships[position].got_hits
+			ships[position].get_hit
 		end
 	end
 

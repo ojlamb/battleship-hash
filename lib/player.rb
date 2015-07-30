@@ -10,8 +10,8 @@ class Player
 
   def fire(position)
     if @board.ships.keys.include?(position)
-      board.collect_hits(position)
-      board.checks(position)
+      board.collect_hits(position) #untested
+      board.checks(position) #untested
       "Hit"
     else
       board.collect_misses(position)

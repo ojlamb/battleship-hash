@@ -11,13 +11,13 @@ class Submarine
     @hits = 0
   end
 
-  def got_hits
+  def hit
     @hits += 1
     sunk?
   end
 
 	def sunk?
-	  @hits == DEFAULT_SIZE ? true : false
+	  @hits == DEFAULT_SIZE #? true : false
 	end
 
 end
