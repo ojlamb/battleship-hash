@@ -10,16 +10,6 @@ describe Ship do
     expect(ship.hits).to eq 0
   end
 
-  # describe '#hit?' do
-  #   it 'is hit' do
-  #     ship = Ship.boat
-  #     expect(ship.hits).to eq 1
-  #   end
-  #   it 'is not hit' do
-  #     ship = Ship.boat
-  #     expect(ship.hits).to eq 0
-  #   end
-
   describe '#get_hit' do
     it 'increases  hits' do
       ship = Ship.boat

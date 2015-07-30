@@ -55,9 +55,8 @@ class Board
 		@misses << position
 	end
 
-	def checks(position) # untested
+	def checks(position)
 		if ships.keys.include?(position)
-			#ships[position].got_hits
 			ships[position].get_hit
 		end
 	end
@@ -65,14 +64,4 @@ class Board
 	def all_ships_sunk?
 		@ships.keys.length == @hits.length
 	end
-
-	# def sunk?
-	# 	if (@ships[self.class.name] & hits).length == DEFAULT_SIZE
-	# 		true
-	# 	else
-	# 		false
-	# 	end
-	# end
-
-
 end

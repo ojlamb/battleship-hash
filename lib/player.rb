@@ -19,15 +19,7 @@ class Player
     end
   end
 
-
-
-  # private
-  # def gets_hit?
-  #   @board.ships.values.flatten.include?(position)
-  # end
-
-  # def missed
-  #   @board.ships.values.flatten.include?(position)
-  # end
-
+  def won?
+    board.all_ships_sunk?
+  end
 end

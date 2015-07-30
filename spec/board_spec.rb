@@ -11,7 +11,7 @@ describe Board do
 			expect(subject).to respond_to(:place_ship).with(3).arguments
 		end
 
-		it "result should be ships with coordinates" do
+		it "# result should be ships with coordinates" do
 			coordinates = "A2"
       allow(ship).to receive(:size) { 2 }
       subject.place_ship(ship, :vertical, coordinates)
