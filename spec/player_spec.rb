@@ -23,5 +23,16 @@ describe Player do
       allow(board).to receive(:collect_misses)
       expect(player.fire("B2")).to eq("Miss")
     end
+
+    # it "checks if board receives collect hits method" do
+    #   subject.fire("A2")
+    #   expect(board).to receive(:collect_hits).with("A2")
+    # end
+
+    # it "checks if board receives checks method" do
+    #   subject.fire("A2")
+    #   expect(board).to receive(:checks).with("A2")
+    # end
+
   end
 end

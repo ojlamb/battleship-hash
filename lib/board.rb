@@ -57,8 +57,7 @@ class Board
 
 	def checks(position)
 		if ships.keys.include?(position)
-			ships[position].hits += 1
-			ships[position].sunk?
+			ships[position].got_hits
 		end
 	end
 

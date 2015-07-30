@@ -2,8 +2,9 @@
 require 'submarine'
 
 describe Submarine do
-  let(:board) { double :board }
+  let(:board) { double :board, collect_hits: "Hit", checks: !!!! }
   let(:player) { Player.new(board) }
+  let(:ship) { double :ship }
 
 	it 'expect Submarine to have a default size' do
 	  expect(subject.size).to eq(Submarine::DEFAULT_SIZE)
@@ -15,12 +16,21 @@ describe Submarine do
     end
 
     it "should return true if it has sunk" do
-      subject.hits = 2
-      binding.pry
-      allow(player).to receive(:fire) { "Hit" }
+      # allow(board).to receive(:ships) { {"A2" => ship} }
+      allow(player).to receive(:fire)
+      allow(board).to receive(:collect_hits)
+      # board.collect_hits("A2")
+      # board.checks("A2")
+      # allow(player).to receive(:fire)
+      # allow(board).to receive(:collect_hits)
       allow(board).to receive(:checks)
-      subject.hits = subject.hits + 1
+      # subject.hits = subject.size
       expect(subject.sunk?).to eq(true)
+    end
+
+    it "should return false if it has not sunk" do
+      # subject.hits = 2
+      # expect(subject.sunk?).to eq(false)
     end
   end
 

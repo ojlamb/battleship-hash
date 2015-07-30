@@ -8,7 +8,7 @@ class Destroyer
 
   def initialize
     @size = DEFAULT_SIZE
-
+    # @hits = 0
   end
 
   # def change_direction
