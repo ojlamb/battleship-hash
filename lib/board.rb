@@ -1,4 +1,3 @@
-require_relative "numeric"
 
 require 'pry'
 
@@ -19,9 +18,14 @@ class Board
 	def coordinates_for spaces, coordinate, direction
 		coordinates = [coordinate]
 		(spaces - 1).times do
-			coordinates << (direction == :horizontal ? coordinates.last.next : next_vertical(coordinates.last))
+		coordinates << (direction == :horizontal ? next_horizontal(coordinates.last) : next_vertical(coordinates.last))
 		end
 		coordinates
+	end
+
+	def next_horizontal coordinate
+		letter, number = coordinate.split('', 2)
+		letter + number.next
 	end
 
 	def next_vertical coordinate
@@ -31,7 +35,7 @@ class Board
 	def off_board?
 		Proc.new do |coordinate|
 			letter, number = coordinate.scan(/\d+|\D+/)
-			(letter.ord - BASE_OFFSET) > @grid_size || number.to_i > @grid_size
+			(letter.ord - BASE_OFFSET) > @grid_size || number.to_i > grid_size
 		end
 	end
 
@@ -48,19 +52,20 @@ class Board
 
 	def collect_hits(position)
 		@hits << position
+		ships[position].get_hit
+		"HIT!"
 	end
 
 	def collect_misses(position)
 		@misses << position
+		"Miss!"
 	end
 
 	def checks(position)
-		if ships.keys.include?(position)
-			ships[position].get_hit
-		end
+		ships.keys.include?(position) ? collect_hits(position) : collect_misses(position)
 	end
 
 	def all_ships_sunk?
-		@ships.keys.length == @hits.length
+		ships.keys.length == hits.length
 	end
 end

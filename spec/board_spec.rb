@@ -2,7 +2,7 @@
 require 'board'
 
 describe Board do
-  let(:ship) { double :ship, size: 2 }
+  let(:ship) { double :ship, :size => 2 }
   let(:unhit_ship) { double(:unhit_ship, :size => 2, :hits => 0 ) }
   let(:player) { double(:player, :fire => "") }
 
@@ -51,7 +51,9 @@ describe Board do
 
   context "hits and misses" do
     it "hits array includes last fire position if a hit" do
-      subject.collect_hits("A2")
+      subject.place_ship(ship, :vertical, "A2")
+      allow(ship).to receive(:get_hit)
+      subject.checks("A2")
       expect(subject.hits).to include("A2")
     end
 
@@ -63,12 +65,28 @@ describe Board do
 
   describe "#all_ships_sunk?" do
     it "can tell if all ships has sunk - true" do
-      subject.place_ship(unhit_ship, :vertical, "A2")
-      subject.collect_hits("A2")
-      subject.collect_hits("B2")
+      subject.place_ship(ship, :vertical, "A2")
+      allow(ship).to receive(:get_hit)
+      subject.checks("A2")
+      subject.checks("B2")
       expect(subject.all_ships_sunk?).to eq true
     end
   end
+
+  it "should return hit if player hits a ship" do
+    subject.place_ship(ship, :vertical, "A2")
+    allow(ship).to receive(:get_hit)
+    subject.checks("A2")
+    expect(subject.collect_hits("A2")).to eq("HIT!")
+  end
+
+
+  # it "should return miss if player misses a ship" do
+  #   ship = double :ship
+  #   allow(board).to receive(:ships) { {"A2" => ship} }
+  #   allow(board).to receive(:collect_misses)
+  #   expect(player.fire("B2")).to eq("Miss")
+  # end
 end
 
 
