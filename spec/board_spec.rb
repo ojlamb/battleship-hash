@@ -2,7 +2,7 @@
 require 'board'
 
 describe Board do
-  let(:ship) { double :ship }
+  let(:ship) { double :ship, size: 2 }
   let(:unhit_ship) { double(:unhit_ship, :size => 2, :hits => 0 ) }
   let(:player) { double(:player, :fire => "") }
 
@@ -13,19 +13,23 @@ describe Board do
 
 		it "# result should be ships with coordinates" do
 			coordinates = "A2"
-      allow(ship).to receive(:size) { 2 }
       subject.place_ship(ship, :vertical, coordinates)
-      expect(subject.ships.keys).to include("A2")
+      expect(subject.ships.keys).to include(coordinates)
 		end
 
     it "should only have vertical or horizontal direction" do
-      coordinates = "A2"
-      allow(ship).to receive(:size) { 2 }
-      expect{subject.place_ship(ship, :spaghetti, coordinates)}.to raise_error "Choose a proper direction"
+      expect(subject.place_ship(ship, :spaghetti, "A2")).to eq ["A2", "B2"]
+    end
+
+    it "can generate coordiates horizontally" do
+      expect(subject.coordinates_for(ship.size, "A1", :horizontal)).to eq ["A1", "A2"]
+    end
+
+    it "can generate coordinates vertically" do
+      expect(subject.coordinates_for(ship.size, "A1", :vertically)).to eq ["A1", "B1"]
     end
 
     it "should not let ships overlap" do
-      allow(ship).to receive(:size) { 2 }
       subject.place_ship(ship, :vertical, "A2")
       expect{subject.place_ship(ship, :horizontal, "A2")}.to raise_error "Ships cannot overlap"
     end
@@ -37,13 +41,11 @@ describe Board do
     end
 
     it "should not accept ships' coordinates number less than zero" do
-      allow(ship).to receive(:size) { 2 }
-      expect{subject.place_ship(ship, :vertical, "Z0")}.to raise_error "Choose a number bigger than zero"
+      expect{subject.place_ship(ship, :vertical, "Z0")}.to raise_error "Invalid coordinate"
     end
 
     it "should not accept ships that go off the board" do
-      allow(ship).to receive(:size) { 2 }
-      expect{subject.place_ship(ship, :vertical, "Z50")}.to raise_error "Can't place ship off board"
+      expect{subject.place_ship(ship, :vertical, "Z50")}.to raise_error "Invalid coordinate"
     end
   end
 
