@@ -15,4 +15,6 @@ class Player
   def won?
     board.all_ships_sunk?
   end
+
 end
+
