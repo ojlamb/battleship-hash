@@ -1,6 +1,3 @@
-
-require 'pry'
-
 class Board
 
 	DEFAULT_GRID_SIZE = 10
@@ -8,7 +5,7 @@ class Board
 
 	attr_reader :ships, :grid_size, :hits, :misses
 
-	def initialize(grid_size=DEFAULT_GRID_SIZE)
+  def initialize(grid_size=DEFAULT_GRID_SIZE)
 		@ships = {}
 		@grid_size = grid_size
 		@hits = []

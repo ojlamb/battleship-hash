@@ -10,19 +10,18 @@ class Game
   end
 
   def start_game
-    puts "Player 1:"
-    player_1_input = gets.chomp.upcase
-    puts player2.fire(player_1_input)
-    return "You won!" if player2.board.all_ships_sunk?
-    second_player
+    puts "Let the Battleships game begin!"
+    while true
+      puts "Player 1:"
+      player_1_target = gets.chomp.upcase
+      puts player2.fire(player_1_input)
+      break "Player 1 Wins!" if player2.board.all_ships_sunk?
+      puts "Player 2:"
+      player_2_target = gets.chomp.upcase
+      puts player1.fire(player_2_input)
+      break "Player 2 Wins!" if player1.board.all_ships_sunk?
+    end
   end
 
-  def second_player
-    puts "Player 2:"
-    player_2_input = gets.chomp.upcase
-    puts player1.fire(player_2_input)
-    return "You won!" if player1.board.all_ships_sunk?
-    start_game
-  end
 
 end
